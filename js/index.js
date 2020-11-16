@@ -196,7 +196,6 @@
         trigger: 'axis',
     },
     legend: {
-        data: ['邮件营销', '联盟广告'],
         right: '10%',
         textStyle: {
           color:'#3748aa'
