@@ -282,4 +282,151 @@
     console.log($(this).index())
   })
 
+})();
+
+/* 播放量 */
+(function (){
+  var myEchart = echarts.init(document.querySelector('.line2 .chart'))
+
+  var option = {
+    tooltip: {
+        trigger: 'axis',
+    },
+    legend: {
+        data: ['播放量', '转发量'],
+        textStyle: {
+          color: 'rgba(255,255,255,0.6)'
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: [ "01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","26","28","29","30"],
+            axisTick: {
+              show: false
+            },
+            axisLabel: {
+              textStyle: {
+                color: 'rgba(255,255,255,0.6)',
+                fontSize: 12
+              }
+            },
+            axisLine: {
+              lineStyle: {
+                color: 'rgba(255,255,255,0.2)'
+              }
+            }
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value',
+            axisTick: {
+              show:false
+            },
+            axisLabel: {
+              textStyle: {
+                color: 'rgba(255,255,255,0.6)',
+                fontSize: 12
+              }
+            },
+            splitLine: {
+              lineStyle: {
+                color:'rgba(255,255,255,0.1)'
+              }
+            }
+        }
+    ],
+    series: [
+        {
+            name: '播放量',
+            type: 'line',
+            data: [ 30, 40, 30, 40,30, 40, 30,60,20, 40, 30, 40, 30, 40,30, 40, 30,60,20, 40, 30, 40, 30, 40,30, 40, 20,60,50, 40],
+            /* 圆滑 */
+            smooth: true,
+            lineStyle: {
+              color: '#0184d5',
+              width: 2
+            },
+             // 填充区域
+          areaStyle: {
+            // 渐变色，只需要复制即可
+            color: new echarts.graphic.LinearGradient(
+              0,
+              0,
+              0,
+              1,
+              [
+                {
+                  offset: 0,
+                  color: "rgba(1, 132, 213, 0.4)"   // 渐变色的起始颜色
+                },
+                {
+                  offset: 0.8,
+                  color: "rgba(1, 132, 213, 0.1)"   // 渐变线的结束颜色
+                }
+              ],
+              false
+            ),
+            shadowColor: "rgba(0, 0, 0, 0.1)",
+          },
+          symbol: 'circle',
+          symbolSize: 5,
+          showSymbol: false,
+          itemStyle: {
+            color: '#0184d5',
+            borderColor: 'rgba(221,220,107,0.1)',
+            borderWidth: 12
+          }
+        },
+        {
+            name: '转发量',
+            type: 'line',
+               // 填充区域
+          areaStyle: {
+            // 渐变色，只需要复制即可
+            color: new echarts.graphic.LinearGradient(
+              0,
+              0,
+              0,
+              1,
+              [
+                {
+                  offset: 0,
+                  color: "rgba(0, 216, 135, 0.4)"
+                },
+                {
+                  offset: 0.8,
+                  color: "rgba(0, 216, 135, 0.1)"
+                }
+              ],
+              false
+            ),
+            shadowColor: "rgba(0, 0, 0, 0.1)",
+          },
+          symbol: 'circle',
+          symbolSize: 5,
+          showSymbol: false,
+          itemStyle: {
+            color: '#00d887',
+            borderColor: 'rgba(221,220,107,0.1)',
+            borderWidth: 12
+          },
+          data: [ 130, 10, 20, 40,30, 40, 80,60,20, 40, 90, 40,20, 140,30, 40, 130,20,20, 40, 80, 70, 30, 40,30, 120, 20,99,50, 20],
+            smooth: true
+        }
+    ]
+  };
+  myEchart.setOption(option)
+  window.addEventListener('resize',function (){
+    myEchart.resize()
+  })
+
 })()
