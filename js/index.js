@@ -429,4 +429,66 @@
     myEchart.resize()
   })
 
+})();
+
+/* 程序员年龄分部 */
+(function (){
+  var myEchart = echarts.init(document.querySelector('.pie .chart'))
+
+  var option = {
+    tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b}: {c} ({d}%)'
+    },
+    legend: {
+        bottom: '0%',
+        /* 小图标设置 */
+        itemWidth: 10,
+        itemHeight: 10,
+        textStyle: {
+          color:'rgba(255,255,255,0.5)',
+          fontSize: '12'
+        },
+        data: ['20岁以下', '20岁-29岁', '30岁-39岁', '40岁-49岁', '50岁以上']
+    },
+    series: [
+        {
+            name: '程序员年龄统计',
+            type: 'pie',
+            /* 大小，第一个参数，里面的圈，第二参数，外圈 */
+            radius: ['50%', '70%'],
+            avoidLabelOverlap: false,
+            /* 图形上的文字 */
+            label: {
+                show: false,
+                position: 'center'
+            },
+            /* 内圈里文字设置 */
+            emphasis: {
+                label: {
+                    show: true,
+                    fontSize: '18',
+                    fontWeight: 'bold'
+                }
+            },
+            /* 连接图形和文字的线 */
+            labelLine: {
+                show: false
+            },
+            data: [
+                {value: 5, name: '20岁以下'},
+                {value: 70, name: '20岁-29岁',itemStyle:{color:'#78bb98'}},
+                {value: 20, name: '30岁-39岁'},
+                {value: 4, name: '40岁-49岁'},
+                {value: 1, name: '50岁以上'}
+            ]
+        }
+    ]
+};
+
+  myEchart.setOption(option)
+
+  window.addEventListener('resize', function (){
+    myEchart.resize()
+  })
 })()
