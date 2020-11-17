@@ -191,6 +191,19 @@
 /* 人员变化 */
 (function (){
   var myEchart = echarts.init(document.querySelector('.line .chart'))
+  var yearData = [{
+    year:'2020',
+    data: [
+      [24,40,101,123,90,239,210,230,120,230,210,120],
+      [40,300,180,191,330,210,230,180,230,210,120,79]
+    ]
+  },{
+    year:'2021',
+    data: [
+      [134,175,112,197,121,67,98,21,43,64,76,38],
+      [142,131,165,213,178,21,82,64,42,60,19,34]
+    ]
+  }]
   var option = {
     tooltip: {
         trigger: 'axis',
@@ -243,7 +256,7 @@
             name: '新增游客',
             type: 'line',
             stack: '新增',
-            data: [120, 220, 101, 134, 90, 230, 210,600,100,200,300,100],
+            data: yearData[0].data[0],
             /* 圆滑 */
             smooth: true
         },
@@ -251,7 +264,7 @@
             name: '游客流动',
             type: 'line',
             stack: '总量',
-            data: [220, 182, 191, 234, 290, 330, 310, 134, 90, 230, 210, 500],
+            data: yearData[0].data[1],
             smooth: true
         }
     ]
@@ -259,6 +272,14 @@
   myEchart.setOption(option)
   window.addEventListener('resize',function (){
     myEchart.resize()
+  })
+  $('.line h2').on('click','a',function(){
+    var obj = yearData[$(this).index()]
+    for(let i=0; i<option.series.length;i++){
+      option.series[i].data = obj.data[i]
+    }
+    myEchart.setOption(option)
+    console.log($(this).index())
   })
 
 })()
